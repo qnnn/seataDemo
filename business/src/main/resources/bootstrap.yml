@@ -1,0 +1,61 @@
+server:
+  port: 8888
+
+spring:
+  application:
+    name: business-service
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.229.150:8848
+        namespace: 79da4e74-c400-4dc6-b6f8-09a734d57c2a
+      config:
+        server-addr: 192.168.229.150:8848
+        file-extension: yaml
+        namespace: 79da4e74-c400-4dc6-b6f8-09a734d57c2a
+
+seata:
+  application-id: ${spring.application.name}
+  #  用默认给的
+  tx-service-group: business_tx_group
+  config:
+    type: nacos
+    nacos:
+      namespace: 79da4e74-c400-4dc6-b6f8-09a734d57c2a
+      server-addr: 192.168.229.150:8848
+      group: SEATA_GROUP
+      username: "nacos"
+      password: "nacos"
+  registry:
+    type: nacos
+    nacos:
+      application: seata-server
+      namespace: 79da4e74-c400-4dc6-b6f8-09a734d57c2a
+      server-addr: 192.168.229.150:8848
+      group: SEATA_GROUP
+      username: "nacos"
+      password: "nacos"
+
+feign:
+  client:
+    config:
+      default:
+        connect-timeout: 30000
+        read-timeout: 30000
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

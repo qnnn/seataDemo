@@ -1,0 +1,74 @@
+server:
+  port: 8777
+
+spring:
+  application:
+    name: storage-service
+  jpa:
+    open-in-view: true
+    properties:
+      hibernate:
+        enable_lazy_load_no_trans: true
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.229.150:3306/seata_storage?useUnicode=true&characterEncoding=utf-8&serverTimezone=Hongkong&useSSL=false
+    username: root
+    password: root
+    hikari:
+      minimum-idle: 5
+      idle-timeout: 600000
+      maximum-pool-size: 10
+      auto-commit: true
+      pool-name: MyHikariCP
+      max-lifetime: 1800000
+      connection-timeout: 30000
+      connection-test-query: SELECT 1
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.229.150:8848
+        namespace: 79da4e74-c400-4dc6-b6f8-09a734d57c2a
+      config:
+        server-addr: 192.168.229.150:8848
+        file-extension: yaml
+        namespace: 79da4e74-c400-4dc6-b6f8-09a734d57c2a
+
+seata:
+  application-id: ${spring.application.name}
+  #  用默认给的
+  tx-service-group: storage_tx_group
+  config:
+    type: nacos
+    nacos:
+      namespace: 79da4e74-c400-4dc6-b6f8-09a734d57c2a
+      server-addr: 192.168.229.150:8848
+      group: SEATA_GROUP
+      username: "nacos"
+      password: "nacos"
+  registry:
+    type: nacos
+    nacos:
+      application: seata-server
+      namespace: 79da4e74-c400-4dc6-b6f8-09a734d57c2a
+      server-addr: 192.168.229.150:8848
+      group: SEATA_GROUP
+      username: "nacos"
+      password: "nacos"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
