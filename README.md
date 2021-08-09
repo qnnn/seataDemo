@@ -17,6 +17,7 @@ seata+nacos 基于AT模式，模拟下单之后减库存和账户余额
 **注：**
 1. 虽然seata服务器的版本是1.4.2，seata-starter依赖不符的原因是，同样的配置在1.4.2版本的依赖反而RM注册不上去，降低版本后解决。
 2. seata-server的数据库连接池如果设为hikari报错，且springboot服务中的数据库连接池也不能为hikari，不然resourceIds显示为空。
+3. 在第二阶段提交或回滚时，如果RM宕机，将会产生脏数据，在分支事务状态表上二阶段提交失败对应状态码7，二阶段回滚失败对应状态码10，可根据状态码和undo_log进行补偿。
 ### 简略原理图
 ![image-20210809184407445](https://github.com/qnnn/seataDemo/blob/main/photo/%E5%8E%9F%E7%90%86%E5%9B%BE.png?raw=true)
 
