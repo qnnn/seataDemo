@@ -18,7 +18,6 @@ public class StorageServiceImpl {
     public void cut(String commodityCode,Long count){
         Storage storage = storageRepository.findByCommodityCode(commodityCode);
         storage.setCount(storage.getCount()-count);
-        System.out.println(1/0);
         storageRepository.save(storage);
     }
 

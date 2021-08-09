@@ -14,9 +14,10 @@ spring:
         file-extension: yaml
         namespace: 79da4e74-c400-4dc6-b6f8-09a734d57c2a
 
+
 seata:
   application-id: ${spring.application.name}
-  #  用默认给的
+
   tx-service-group: business_tx_group
   config:
     type: nacos
@@ -32,9 +33,11 @@ seata:
       application: seata-server
       namespace: 79da4e74-c400-4dc6-b6f8-09a734d57c2a
       server-addr: 192.168.229.150:8848
-      group: SEATA_GROUP
+      group: "SEATA_GROUP"
       username: "nacos"
       password: "nacos"
+
+
 
 feign:
   client:
